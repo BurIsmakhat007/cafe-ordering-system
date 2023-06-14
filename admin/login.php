@@ -35,19 +35,19 @@
         <div class="card">
           <img src="https://play-lh.googleusercontent.com/NlzmKukv1mYdkgUZw8GpCO_cLalJtymfJ8tzEtaRlZQLFZUirjagjNypoJu3nwapmGo" class="card-img-top" alt="Image" style="width:250px; height:250px; margin-left:130px; margin-top:20px">
           <div class="card-body">
-            <h2 class="card-title text-center"> Suza Cafeteria </h2>
-            <form method="post" action="includes/login.php">
+            <h2 class="card-title text-center"> Suza Cafeteria. Admin Panel </h2>
+            <form method="post" action="../includes/login.php">
               <div class="form-group mt-5">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <label for="username">Email:</label>
+                <input type="text" class="form-control" id="email" name="email" required>
               </div>
               <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
               </div>
-              <button type="submit" class="btn btn-outline-success btn-sm" name="loginBtn">Login</button>
+              <button type="submit" class="btn btn-outline-success btn-sm" name="adminLoginBtn">Login</button>
             </form>
-            <a type="button" class="btn btn-outline-secondary btn-sm mt-5 text-center ml-5" href="registration.php"">Dont you have account? Click here to register</a>
+            <!-- <a type="button" class="btn btn-outline-secondary btn-sm mt-5 text-center ml-5" href="registration.php"">Dont you have account? Click here to register</a> -->
 
           </div>
         </div>

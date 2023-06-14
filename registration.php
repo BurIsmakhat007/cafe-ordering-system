@@ -9,9 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Roboto Mono', monospace;
-        }
+    body {
+      
+  font-family: 'Roboto Mono', monospace;
+  background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/08/Download-Images-Food-HD.jpg');
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value (0.5) as per your preference */
+}
+
     </style>
 </head>
 

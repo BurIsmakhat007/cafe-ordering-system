@@ -1,6 +1,16 @@
+<?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    // Redirect to the login page
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,8 +21,17 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../admin/assets/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-</head>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+        }
+    </style>
+</head>
 <body class="sb-nav-fixed">
 
 
@@ -88,8 +107,8 @@
                                             <td><?php echo $categoryName; ?></td>
                                             <td><?php echo $foodPrice; ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $foodId ?>">Edit</button>
-                                                <a href="./includes/deleteUser.php?foodId=<?php echo $foodId; ?>" type="button" class="btn btn-outline-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $foodId ?>">Edit</button>
+                                                <a href="./includes/deleteUser.php?foodId=<?php echo $foodId; ?>" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="editModal<?php echo $foodId ?>" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">

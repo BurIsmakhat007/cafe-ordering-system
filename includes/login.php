@@ -28,6 +28,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo 'Invalid username or password';
         }
+    } else if (isset($_POST['adminLoginBtn'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $stmt = $conn->prepare('SELECT * FROM user_tbl WHERE email = :email');
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && md5($password) === $user['password']) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['fullName'] = $user['fullName']; // Store the username in the session
+            header('Location: ../admin/dashboard.php');
+            exit();
+        } else {
+            echo 'Invalid username or password';
+        }
     }
 }
 
