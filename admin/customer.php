@@ -81,7 +81,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
 
                                 if ($result == true) {
-
+                                    $sn = 1;
 
                                     foreach ($result as $data) {
                                         $customer_id = $data["customer_id"];
@@ -90,14 +90,14 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
                                 ?>
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row"><?php echo $sn; ?></th>
                                             <td><?php echo $fullName; ?></td>
                                             <td>
-                                                <a href="./includes/deleteCustomer.php?customer_id=<?php echo $customer_id; ?>" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                <a href="../includes/delete/deleteCustomer.php?customer_id=<?php echo $customer_id; ?>" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                         
-                                <?php }
+                                 <?php $sn++; }
                                 } ?>
 
                             </tbody>

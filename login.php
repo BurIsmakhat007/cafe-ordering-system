@@ -47,7 +47,16 @@
               </div>
               <button type="submit" class="btn btn-outline-success btn-sm" name="loginBtn">Login</button>
             </form>
-            <a type="button" class="btn btn-outline-secondary btn-sm mt-5 text-center ml-5" href="registration.php"">Dont you have account? Click here to register</a>
+            <div class="row">
+              <div class="col-md-5">
+                <a type="button" class="btn btn-outline-primary btn-sm mt-5 text-center ml-5" href="admin/login.php">Login as Admin</a>
+              </div>
+              <div class="col-md-7">
+            <a type="button" class="btn btn-outline-secondary btn-sm mt-5 text-center ml-5" href="registration.php">Dont you have account? Click here to register</a>
+              </div>
+            </div>
+            <!-- <a type="button" class="btn btn-outline-primary btn-sm mt-5 text-center ml-5" href="admin/login.php">Login as Admin</a>
+            <a type="button" class="btn btn-outline-secondary btn-sm mt-5 text-center ml-5" href="registration.php">Dont you have account? Click here to register</a> -->
 
           </div>
         </div>

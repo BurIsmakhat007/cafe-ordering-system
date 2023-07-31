@@ -44,10 +44,10 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Tables</h1>
+                <h1 class="mt-4">Transactions</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Tables</li>
+                    <li class="breadcrumb-item active">Transactions</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -84,7 +84,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                 $result = $statement->fetchAll();
 
                                 if ($result == true) {
-
+                                    $sn = 1;
 
                                     foreach ($result as $data) {
                                         $id = $data["orderId"];
@@ -106,7 +106,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                        
                                 ?>
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row"><?php echo $sn; ?></th>
                                             <td><?php echo $id; ?></td>
                                             <td><?php echo $from; ?></td>
                                             <td><?php echo $reference_no; ?></td>
@@ -114,7 +114,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                            
                                         </tr>
                                         
-                                <?php }
+                                <?php $sn++; }
                                 } ?>
 
                             </tbody>

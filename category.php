@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (isset($_SESSION['customer_id']) || !empty($_SESSION['customer_id'])) {
     // Redirect to the login page
     $userId = $_SESSION['customer_id'];
@@ -11,19 +10,17 @@ else {
 }
 require_once("./includes/connection.php");
 
+$id=$_GET["id"];
+
 $sqlQuery = "SELECT f.*, c.categoryName 
              FROM food_tbl AS f 
-             INNER JOIN category_tbl AS c ON f.foodCategory = c.category_id";
+             INNER JOIN category_tbl AS c ON f.foodCategory = c.category_id WHERE c.category_id = $id";
 $statement = $conn->prepare($sqlQuery);
 $statement->execute();
 $result = $statement->fetchAll();
 
 //get all orders
-if ($cust == false) {
-    $getOrders = $conn->prepare("SELECT * FROM cart_tbl");
-    $getOrders->execute();
-}
-elseif ($cust == true) {
+if ($cust == true) {
     $getOrders = $conn->prepare("SELECT * FROM cart_tbl WHERE userId=$userId");
     $getOrders->execute();
 }
@@ -50,7 +47,7 @@ elseif ($cust == true) {
                     <div class="col mb-5">
                         <div class="card">
                             <!-- Product image -->
-                            <img class="card-img-top" src="./includes/images/<?php echo $imageUrl; ?>" alt="..." style="width:268px;height:230px"   />
+                            <img class="card-img-top" src="./includes/images/<?php echo $imageUrl; ?>" alt="..." />
                             <!-- Product details -->
                             <div class="card-body p-4">
                                 <div class="text-center">

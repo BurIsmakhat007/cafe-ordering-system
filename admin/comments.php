@@ -43,19 +43,19 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Tables</h1>
+                <h1 class="mt-4">Comments</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Tables</li>
+                    <li class="breadcrumb-item active">Comments</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <i class="fas fa-table me-1"></i>
-                                User Data
+                                Comment Data
                             </div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add User</button>
+                            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add User</button> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -64,7 +64,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                 <tr>
                                     <th>No</th>
                                     <th>Full Name</th>
-                                    <th>COmment</th>
+                                    <th>Comment</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -82,7 +82,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
 
                                 if ($result == true) {
-
+                                    $sn = 1;
 
                                     foreach ($result as $data) {
                                         $comment_id = $data["comment_id"];
@@ -91,16 +91,16 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
                                 ?>
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row"><?php echo $sn; ?></th>
                                             <td><?php echo $fullName; ?></td>
                                             <td><?php echo $comment; ?></td>
                                            
                                             <td>
-                                                <a href="./includes/deleteComment.php?commentId=<?php echo $comment_id; ?>" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                <a href="../includes/delete/deleteComment.php?commentId=<?php echo $comment_id; ?>" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                         
-                                <?php }
+                                 <?php $sn++; }
                                 } ?>
 
                             </tbody>

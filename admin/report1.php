@@ -43,17 +43,17 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Category</h1>
+                <h1 class="mt-4">Tables</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Category</li>
+                    <li class="breadcrumb-item active">Tables</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <i class="fas fa-table me-1"></i>
-                                Category Data
+                                Report Data
                             </div>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Category</button>
                         </div>

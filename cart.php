@@ -1,13 +1,16 @@
 <?php
 session_start();
 $userId = $_SESSION['customer_id'];
+require_once("includes/connection.php");
+//get all orders
+$getOrders = $conn->prepare("SELECT * FROM cart_tbl WHERE userId=$userId");
+$getOrders->execute();
 
 include("./user/menu/header.php");
 include("./user/menu/nav.php");
 
 // Assuming you have the user ID stored in a variable called $userId
 // Fetch cart data based on user ID
-require_once("includes/connection.php");
 $cartQuery = "SELECT p.foodName, p.foodPrice, p.image_url, c.quantity, (p.foodPrice * c.quantity) AS total
               FROM cart_tbl AS c
               INNER JOIN food_tbl AS p ON c.foodId = p.id
@@ -99,14 +102,14 @@ $cartItems = $cartStatement->fetchAll(PDO::FETCH_ASSOC);
             <div class="modal-body">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">Payment Procedure</h5>
+                        <h5 class="card-title">Pay through TigoPesa</h5>
                         <ol class="list-group">
-                            <li class="list-group-item">Step 1: Enter the reference number.</li>
-                            <li class="list-group-item">Step 2: Confirm the payment.</li>
-                            <li class="list-group-item">Step 3: Complete the transaction.</li>
-                            <li class="list-group-item">Step 4: Complete the transaction.</li>
-                            <li class="list-group-item">Step 5: Complete the transaction.</li>
-                            <li class="list-group-item">Step 6: Complete the transaction.</li>
+                            <li class="list-group-item">Step 1: Call <b>*150*01#</b></li>
+                            <li class="list-group-item">Step 2: Choose <b>5 "Lipia Kwa Simu"</b></li>
+                            <li class="list-group-item">Step 3: Choose <b>1 "Kwenda Tigo Pesa"</b></li>
+                            <li class="list-group-item">Step 4: Enter <b>account number (5545444) "Suza Cafe"</b></li>
+                            <li class="list-group-item">Step 5: Enter <b>amount</b></li>
+                            <li class="list-group-item">Step 6: Enter <b>Pin</b> to Confirm</li>
                         </ol>
                     </div>
                 </div>
@@ -114,7 +117,7 @@ $cartItems = $cartStatement->fetchAll(PDO::FETCH_ASSOC);
                 <form action="./includes/Order.php" method="post">
                     <div class="mb-3">
                         <label for="refNumber" class="form-label">Reference Number (8 digits):</label>
-                        <input type="text" class="form-control" id="refNumber" name="refNumber" maxlength="8">
+                        <input type="text" class="form-control" id="refNumber" placeholder="Enter Reference No" name="refNumber" maxlength="8">
                         <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="<?php echo $totalAmount ?>" hidden >
                     </div>
             </div>

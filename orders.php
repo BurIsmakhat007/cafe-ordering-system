@@ -1,4 +1,10 @@
 <?php
+session_start();
+$userId = $_SESSION['customer_id'];
+require_once("includes/connection.php");
+//get all orders
+$getOrders = $conn->prepare("SELECT * FROM cart_tbl WHERE userId=$userId");
+$getOrders->execute();
 include("./user/menu/header.php");
 include("./user/menu/nav.php");
 ?>
@@ -12,13 +18,12 @@ include("./user/menu/nav.php");
                             <th class="text-center">Order ID</th>
                             <th class="text-center">Payment Status</th>
                             <th class="text-center">Order Status </th>
-                            <th class="text-center">Action</th>
+                            <!-- <th class="text-center">Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
 
 <?php
-require_once("includes/connection.php");
 // session_start();
 $customerId = $_SESSION['customer_id'];
 
@@ -74,11 +79,11 @@ if ($result == true) {
             <td><?php echo $p_status; ?></td>
             <td><?php echo $status; ?></td>
             
-            <td>
+            <!-- <td>
                
                 <a href="viewOrder.php?id=<?php echo $id; ?>" type="button" class="btn btn-outline-danger btn-sm">View Order </a>
                 
-            </td>
+            </td> -->
         </tr>
        
 <?php }

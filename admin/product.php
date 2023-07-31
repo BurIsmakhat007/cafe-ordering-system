@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Tables - SB Admin</title>
+    <title>Suza Cafe - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../admin/assets/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -41,10 +41,10 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Tables</h1>
+                <h1 class="mt-4">Foods</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Tables</li>
+                    <li class="breadcrumb-item active">Foods</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -87,7 +87,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                 $result2 = $statement2->fetchAll();
 
                                 if ($result == true) {
-
+                                    $sn = 1;
 
                                     foreach ($result as $data) {
                                         $foodId = $data["id"];
@@ -99,7 +99,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                         // $status = $data['status'];
                                 ?>
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row"><?php echo $sn; ?></th>
                                             <td>
                                                 <img src="../includes/images/<?php echo $imageUrl; ?>" alt="Food Image" width="50" height="50">
                                             </td>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                             <td><?php echo $foodPrice; ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $foodId ?>">Edit</button>
-                                                <a href="./includes/deleteUser.php?foodId=<?php echo $foodId; ?>" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                <a href="../includes/delete/deleteProduct.php?foodId=<?php echo $foodId; ?>" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="editModal<?php echo $foodId ?>" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -155,7 +155,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                <?php }
+                                <?php $sn++; }
                                 } ?>
 
                             </tbody>

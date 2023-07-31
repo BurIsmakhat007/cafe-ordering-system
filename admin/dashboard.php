@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Tables - SB Admin</title>
+    <title>Suza Cafe - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../admin/assets/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -31,6 +31,12 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
         body {
             font-family: 'Roboto Mono', monospace;
         }
+        #system-cover{
+    width:100%;
+    height:45em;
+    /*object-fit:cover;
+    object-position:center center;*/
+  }
     </style>
 </head>
 
@@ -39,7 +45,20 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
     <?php include("nav.php"); ?>
 
+<?php
+require_once("../includes/connection.php");
+$getCustomers = $conn->prepare("SELECT * FROM customer_tbl");
+$getCustomers->execute();
 
+$getFood = $conn->prepare("SELECT * FROM food_tbl");
+$getFood->execute();
+
+$getOrders = $conn->prepare("SELECT * FROM order_tbl WHERE orderStatus=0");
+$getOrders->execute();
+
+$getComments = $conn->prepare("SELECT * FROM comment_tbl");
+$getComments->execute();
+?>
 
 
     <div id="layoutSidenav_content">
@@ -52,47 +71,51 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                 <div class="row">
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-primary text-white mb-4">
-                            <div class="card-body">Primary Card</div>
+                            <div class="card-body">Customers</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="#">View
-                                    Details</a>
-                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <h4 class="rate-percentage align-items-center"><?php echo $getCustomers->rowCount(); ?></h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-warning text-white mb-4">
-                            <div class="card-body">Warning Card</div>
+                            <div class="card-body">Food Categories</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="#">View
-                                    Details</a>
-                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <h4 class="rate-percentage align-items-center"><?php echo $getFood->rowCount(); ?></h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-success text-white mb-4">
-                            <div class="card-body">Success Card</div>
+                            <div class="card-body">Pending Orders</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <h4 class="rate-percentage align-items-center"><?php echo $getOrders->rowCount(); ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- <div class="col-xl-3 col-md-6">
+                        <div class="card bg-success text-white mb-4">
+                            <div class="card-body">Pending Orders</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="#">View
                                     Details</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-danger text-white mb-4">
-                            <div class="card-body">Danger Card</div>
+                            <div class="card-body">Comments</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="#">View
-                                    Details</a>
-                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <h4 class="rate-percentage align-items-center"><?php echo $getComments->rowCount(); ?></h4>
+                                <!-- <div class="small text-white"><i class="fas fa-angle-right"></i></div> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-6">
+                <div class="col-12">
+                    <img src="../includes/images/cover.png" alt="system-cover" id="system-cover">
+                    <!-- <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-area me-1"></i>
@@ -109,7 +132,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                             </div>
                             <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>

@@ -1,4 +1,13 @@
 <?php
+session_start();
+if (isset($_SESSION['customer_id']) || !empty($_SESSION['customer_id'])) {
+    // Redirect to the login page
+    $userId = $_SESSION['customer_id'];
+    $cust = true;
+}
+else {
+    $cust = false;
+}
 require_once("includes/connection.php");
 
 // Check if the foodId query parameter is present
@@ -28,6 +37,11 @@ if (isset($_GET['foodId'])) {
         $categoryName = $item["categoryName"];
         $imageUrl = $item["image_url"];
     }
+}
+//get all orders
+if ($cust == true) {
+    $getOrders = $conn->prepare("SELECT * FROM cart_tbl WHERE userId=$userId");
+    $getOrders->execute();
 }
 ?>
 

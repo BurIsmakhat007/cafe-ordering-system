@@ -43,10 +43,10 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Tables</h1>
+                <h1 class="mt-4">Users</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Tables</li>
+                    <li class="breadcrumb-item active">Users</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -83,7 +83,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
 
                                 if ($result == true) {
-
+                                    $sn = 1;
 
                                     foreach ($result as $data) {
                                         $userId = $data["id"];
@@ -93,7 +93,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                         // $status = $data['status'];
                                 ?>
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <th scope="row"><?php echo $sn; ?></th>
                                             <td><?php echo $fullName; ?></td>
                                             <td><?php echo $email; ?></td>
                                             <td><?php echo $password; ?></td>
@@ -118,7 +118,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="email" class="form-label">Email address</label>
-                                                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>>
+                                                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
                                                             </div>
                                                             <div class=" mb-3">
                                                                 <label for="email" class="form-label">Password</label>
@@ -131,7 +131,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                                                 </div>
                                             </div>
                                         </div>
-                                <?php }
+                                <?php $sn++; }
                                 } ?>
 
                             </tbody>

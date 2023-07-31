@@ -33,9 +33,9 @@ try {
         $orderId = generateRandomOrderId();
 
         // Insert the order data into the order_tbl
-        $orderQuery = "INSERT INTO order_tbl VALUES (?, ?, ?, ?, ?)";
+        $orderQuery = "INSERT INTO order_tbl VALUES (?, ?, ?, ?, ?, ?, ?)";
         $orderStatement = $conn->prepare($orderQuery);
-        $orderStatement->execute([null, $orderId, $userId, 0, 0]);
+        $orderStatement->execute([null, $orderId, $userId, 0, 0, null, null]);
 
 
         // Insert the order details into the order_details table

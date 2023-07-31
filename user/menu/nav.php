@@ -12,8 +12,8 @@ if (session_status() === PHP_SESSION_NONE) {
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent"> <!-- Added justify-content-between class -->
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> <!-- Added mx-auto class for center alignment -->
-                <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li> -->
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="menu.php">Our Menu</a></li>
+                <li class="nav-item" style="margin-right: 20px;"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                <li class="nav-item" style="margin-right: 20px;"><a class="nav-link active" aria-current="page" href="menu.php">Our Menu</a></li>
                 <?php if (isset($_SESSION['customer_id'])) : ?>
                     <li class="nav-item"><a class="nav-link text-dark" href="orders.php">My Orders</a></li>
                     <!-- <li class="nav-item"><a class="nav-link text-dark" href="logout.php">Logout</a></li> -->
@@ -27,7 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="cart.php" class="btn btn-outline-dark btn-sm" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo $getOrders->rowCount(); ?></span>
                     </a>
                     <a href="#" class="btn btn-outline-dark btn-sm" style="margin-left: 10px;">
                         <i class="fa fa-user" aria-hidden="true"></i>
@@ -48,6 +48,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
                     </a>
                 <?php endif; ?>
+                <!-- <a href="index.php" class="btn btn-outline-secondary btn-sm" style="margin-left: 10px;">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="nav-link">Home</span>
+
+                    </a> -->
         </div>
     </div>
 </nav>

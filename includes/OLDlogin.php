@@ -8,11 +8,6 @@ if (isset($_SESSION['customer_id'])) {
     header('Location: ../index.php');
     exit();
 }
-else if (isset($_SESSION['user_id'])) {
-    // User is already logged in, redirect to dashboard or any other page
-    header('Location: ../admin/dashboard.php');
-    exit();
-}
 
 // Login form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo 'Invalid username or password';
         }
     }
-    else if (isset($_POST['adminLoginBtn'])) {
+    if (isset($_POST['adminLoginBtn'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
